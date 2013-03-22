@@ -12,8 +12,13 @@ void setup() {
 
 	accel.active(false);
 
+	/* set scale to 2g (default) */
 	accel.scale(2);
+
+	/* disable fast read (default) */
 	accel.fastRead(false);
+
+	/* calibrate axes */
 	/* accel.offset(-10, -2, 0); */
 
 	accel.active(true);
