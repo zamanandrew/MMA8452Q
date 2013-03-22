@@ -20,6 +20,6 @@ Arduino library.
 
 ## COPYRIGHT
 
-Copyright (C) 2011-2012 Alessandro Ghedini <alessandro@ghedini.me>
+Copyright (C) 2013 Alessandro Ghedini <alessandro@ghedini.me>
 
 See COPYING for the license.
