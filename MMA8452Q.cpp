@@ -103,6 +103,24 @@ enum MMA8452Q_CTRL_REG2 {
 	ST     = 7
 };
 
+enum MMA8452Q_CTRL_REG4 {
+	INT_EN_DRDY   = 0,
+	INT_EN_FF_MT  = 2,
+	INT_EN_PULSE  = 3,
+	INT_EN_LNDPRT = 4,
+	INT_EN_TRANS  = 5,
+	INT_EN_ASLP   = 7
+};
+
+enum MMA8452Q_CTRL_REG5 {
+	INT_CFG_DRDY   = 0,
+	INT_CFG_FF_MT  = 2,
+	INT_CFG_PULSE  = 3,
+	INT_CFG_LNDPRT = 4,
+	INT_CFG_TRANS  = 5,
+	INT_CFG_ASLP   = 7
+};
+
 MMA8452Q::MMA8452Q() {
 }
 
@@ -183,6 +201,40 @@ void MMA8452Q::autoSleep(bool enable) {
 	uint8_t val = this -> registerRead(CTRL_REG2);
 	bitWrite(val, SLPE, enable);
 	this -> registerWrite(CTRL_REG2, val);
+}
+
+void MMA8452Q::intDataRdy(bool enable, uint8_t pin) {
+	uint8_t val = this -> registerRead(CTRL_REG4);
+	bitWrite(val, INT_EN_DRDY, enable);
+	this -> registerWrite(CTRL_REG4, val);
+
+	val = this -> registerRead(CTRL_REG5);
+	bitWrite(val, INT_CFG_DRDY, pin);
+	this -> registerWrite(CTRL_REG5, val);
+}
+
+void MMA8452Q::intFreefallMotion(bool enable) {
+	uint8_t val = this -> registerRead(CTRL_REG4);
+	bitWrite(val, INT_EN_FF_MT, enable);
+	this -> registerWrite(CTRL_REG4, val);
+}
+
+void MMA8452Q::intPulse(bool enable) {
+	uint8_t val = this -> registerRead(CTRL_REG4);
+	bitWrite(val, INT_EN_PULSE, enable);
+	this -> registerWrite(CTRL_REG4, val);
+}
+
+void MMA8452Q::intOrientation(bool enable) {
+	uint8_t val = this -> registerRead(CTRL_REG4);
+	bitWrite(val, INT_EN_LNDPRT, enable);
+	this -> registerWrite(CTRL_REG4, val);
+}
+
+void MMA8452Q::intAutoSlp(bool enable) {
+	uint8_t val = this -> registerRead(CTRL_REG4);
+	bitWrite(val, INT_EN_ASLP, enable);
+	this -> registerWrite(CTRL_REG4, val);
 }
 
 void MMA8452Q::axes(int axes[]) {

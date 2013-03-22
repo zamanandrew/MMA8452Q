@@ -31,6 +31,11 @@
 #ifndef MMA8452Q_H
 #define MMA8452Q_H
 
+enum MMA8452Q_INTERRUPTS {
+	MMA8452Q_INT1 = 1,
+	MMA8452Q_INT2 = 0
+};
+
 class MMA8452Q {
 	public:
 		MMA8452Q();
@@ -53,6 +58,12 @@ class MMA8452Q {
 		void reset(void);
 		void selfTest(bool enable);
 		void autoSleep(bool enable);
+
+		void intDataRdy(bool enable, uint8_t pin);
+		void intFreefallMotion(bool enable);
+		void intPulse(bool enable);
+		void intOrientation(bool enable);
+		void intAutoSlp(bool enable);
 
 		uint8_t registerRead(uint8_t addr);
 		void registersRead(uint8_t addr, uint8_t data[], size_t count);
