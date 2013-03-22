@@ -21,7 +21,6 @@ void setup() {
 
 void loop() {
 	accel.axes(axes);
-	/* accel.accelFast(axes); */
 
 	Serial.print("x: ");
 	Serial.print(axes[0]);

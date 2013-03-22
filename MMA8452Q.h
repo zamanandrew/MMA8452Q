@@ -45,7 +45,6 @@ class MMA8452Q {
 		void offset(int8_t off_x, int8_t off_y, int8_t off_z);
 
 		void axes(int axes[]);
-		void axesFast(int axes[]);
 
 		void active(bool enable);
 		void fastRead(bool enable);

@@ -186,27 +186,30 @@ void MMA8452Q::autoSleep(bool enable) {
 }
 
 void MMA8452Q::axes(int axes[]) {
-	uint8_t data[6];
+	uint8_t val = this -> registerRead(CTRL_REG1);
 
-	this -> registersRead(OUT_X_MSB, data, 6);
+	if (bitRead(val, F_READ) == 0) {
+		uint8_t data[6];
 
-	for (int i = 0; i < 3; i++) {
-		axes[i]  = data[i * 2] << 8;
-		axes[i] |= data[(i * 2) + 1];
+		this -> registersRead(OUT_X_MSB, data, 6);
 
-		axes[i] >>= 4;
+		for (int i = 0; i < 3; i++) {
+			axes[i]  = data[i * 2] << 8;
+			axes[i] |= data[(i * 2) + 1];
+
+			axes[i] >>= 4;
+		}
+	} else {
+		uint8_t data[3];
+
+		this -> registersRead(OUT_X_MSB, data, 3);
+
+		for (int i = 0; i < 3; i++) {
+			axes[i] = data[i] << 8;
+			axes[i] >>= 4;
+		}
 	}
-}
 
-void MMA8452Q::axesFast(int axes[]) {
-	uint8_t data[3];
-
-	this -> registersRead(OUT_X_MSB, data, 3);
-
-	for (int i = 0; i < 3; i++) {
-		axes[i] = data[i] << 8;
-		axes[i] >>= 4;
-	}
 }
 
 uint8_t MMA8452Q::registerRead(uint8_t addr) {
