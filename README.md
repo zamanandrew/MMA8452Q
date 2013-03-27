@@ -28,6 +28,12 @@ See the [simple.ino](examples/simple.ino) example for more information.
 The only dependency is the standard [Wire](http://arduino.cc/en/Reference/Wire)
 Arduino library.
 
+## INSTALLATION
+
+Just clone the repository into your user libraries directory. For example, on
+OSX, the default directory is `~/Documents/Arduino/libraries/` and on Windows
+it's `My Documents\Arduino\libraries\`.
+
 ## COPYRIGHT
 
 Copyright (C) 2013 Alessandro Ghedini <alessandro@ghedini.me>
