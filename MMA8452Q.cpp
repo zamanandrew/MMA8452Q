@@ -121,149 +121,7 @@ enum MMA8452Q_CTRL_REG5 {
 	INT_CFG_ASLP   = 7
 };
 
-MMA8452Q::MMA8452Q() {
-}
-
-int MMA8452Q::begin(void) {
-	uint8_t whoami;
-
-	Wire.begin();
-
-	whoami = this -> registerRead(WHO_AM_I);
-
-	if (whoami != 0x2A)
-		return -1;
-
-	this -> active(true);
-
-	return 0;
-}
-
-uint8_t MMA8452Q::status(void) {
-	return this -> registerRead(STATUS);
-}
-
-uint8_t MMA8452Q::sysmod(void) {
-	return this -> registerRead(SYSMOD);
-}
-
-uint8_t MMA8452Q::intSource(void) {
-	return this -> registerRead(INT_SOURCE);
-}
-
-void MMA8452Q::scale(uint8_t scale) {
-	uint8_t value = this -> registerRead(XYZ_DATA_CFG);
-
-	switch (scale) {
-		case 2: bitWrite(value, 0, 0); bitWrite(value, 1, 0); break;
-		case 4: bitWrite(value, 0, 1); bitWrite(value, 1, 0); break;
-		case 8: bitWrite(value, 0, 0); bitWrite(value, 1, 1); break;
-	}
-}
-
-void MMA8452Q::offset(int8_t off_x, int8_t off_y, int8_t off_z) {
-	this -> registerWrite(OFF_X, off_x);
-	this -> registerWrite(OFF_Y, off_y);
-	this -> registerWrite(OFF_Z, off_z);
-}
-
-void MMA8452Q::active(bool enable) {
-	uint8_t val = this -> registerRead(CTRL_REG1);
-	bitWrite(val, ACTIVE, enable);
-	this -> registerWrite(CTRL_REG1, val);
-}
-
-void MMA8452Q::fastRead(bool enable) {
-	uint8_t val = this -> registerRead(CTRL_REG1);
-	bitWrite(val, F_READ, enable);
-	this -> registerWrite(CTRL_REG1, val);
-}
-
-void MMA8452Q::lowNoise(bool enable) {
-	uint8_t val = this -> registerRead(CTRL_REG1);
-	bitWrite(val, LNOISE, enable);
-	this -> registerWrite(CTRL_REG1, val);
-}
-
-void MMA8452Q::reset(void) {
-	uint8_t val = this -> registerRead(CTRL_REG2);
-	bitWrite(val, RST, 1);
-	this -> registerWrite(CTRL_REG2, val);
-}
-
-void MMA8452Q::selfTest(bool enable) {
-	uint8_t val = this -> registerRead(CTRL_REG2);
-	bitWrite(val, ST, enable);
-	this -> registerWrite(CTRL_REG2, val);
-}
-
-void MMA8452Q::autoSleep(bool enable) {
-	uint8_t val = this -> registerRead(CTRL_REG2);
-	bitWrite(val, SLPE, enable);
-	this -> registerWrite(CTRL_REG2, val);
-}
-
-void MMA8452Q::intDataRdy(bool enable, uint8_t pin) {
-	uint8_t val = this -> registerRead(CTRL_REG4);
-	bitWrite(val, INT_EN_DRDY, enable);
-	this -> registerWrite(CTRL_REG4, val);
-
-	val = this -> registerRead(CTRL_REG5);
-	bitWrite(val, INT_CFG_DRDY, pin);
-	this -> registerWrite(CTRL_REG5, val);
-}
-
-void MMA8452Q::intFreefallMotion(bool enable) {
-	uint8_t val = this -> registerRead(CTRL_REG4);
-	bitWrite(val, INT_EN_FF_MT, enable);
-	this -> registerWrite(CTRL_REG4, val);
-}
-
-void MMA8452Q::intPulse(bool enable) {
-	uint8_t val = this -> registerRead(CTRL_REG4);
-	bitWrite(val, INT_EN_PULSE, enable);
-	this -> registerWrite(CTRL_REG4, val);
-}
-
-void MMA8452Q::intOrientation(bool enable) {
-	uint8_t val = this -> registerRead(CTRL_REG4);
-	bitWrite(val, INT_EN_LNDPRT, enable);
-	this -> registerWrite(CTRL_REG4, val);
-}
-
-void MMA8452Q::intAutoSlp(bool enable) {
-	uint8_t val = this -> registerRead(CTRL_REG4);
-	bitWrite(val, INT_EN_ASLP, enable);
-	this -> registerWrite(CTRL_REG4, val);
-}
-
-void MMA8452Q::axes(int axes[]) {
-	uint8_t *data;
-	uint8_t read_count = 0;
-	uint8_t val = this -> registerRead(CTRL_REG1);
-
-	if (bitRead(val, F_READ) == 0)
-		read_count = 6;
-	else
-		read_count = 3;
-
-	data = new uint8_t[read_count];
-
-	this -> registersRead(OUT_X_MSB, data, read_count);
-
-	for (int i = 0; i < 3; i++) {
-		axes[i]  = data[i * (read_count / 3)] << 8;
-
-		if (bitRead(val, F_READ) == 0)
-			axes[i] |= data[(i * 2) + 1];
-
-		axes[i] >>= 4;
-	}
-
-	delete[] data;
-}
-
-uint8_t MMA8452Q::registerRead(uint8_t addr) {
+static inline uint8_t registerRead(uint8_t addr) {
 	Wire.beginTransmission(MMA8452Q_ADDRESS);
 	Wire.write(addr);
 	Wire.endTransmission(false);
@@ -274,7 +132,7 @@ uint8_t MMA8452Q::registerRead(uint8_t addr) {
 	return Wire.read();
 }
 
-void MMA8452Q::registersRead(uint8_t addr, uint8_t data[], size_t count) {
+static inline void registersRead(uint8_t addr, uint8_t data[], size_t count) {
 	Wire.beginTransmission(MMA8452Q_ADDRESS);
 	Wire.write(addr);
 	Wire.endTransmission(false);
@@ -287,14 +145,14 @@ void MMA8452Q::registersRead(uint8_t addr, uint8_t data[], size_t count) {
 		data[i] = Wire.read();
 }
 
-void MMA8452Q::registerWrite(uint8_t addr, uint8_t value) {
+static inline void registerWrite(uint8_t addr, uint8_t value) {
 	Wire.beginTransmission(MMA8452Q_ADDRESS);
 	Wire.write(addr);
 	Wire.write(value);
 	Wire.endTransmission();
 }
 
-void MMA8452Q::registersWrite(uint8_t addr, uint8_t data[], size_t count) {
+static inline void registersWrite(uint8_t addr, uint8_t data[], size_t count) {
 	Wire.beginTransmission(MMA8452Q_ADDRESS);
 	Wire.write(addr);
 
@@ -302,4 +160,131 @@ void MMA8452Q::registersWrite(uint8_t addr, uint8_t data[], size_t count) {
 		Wire.write(data[i]);
 
 	Wire.endTransmission();
+}
+
+static inline void registerSetBit(uint8_t addr, uint8_t bit, bool value) {
+	uint8_t val = registerRead(addr);
+	bitWrite(val, bit, value);
+	registerWrite(addr, val);
+}
+
+MMA8452Q::MMA8452Q() {
+}
+
+int MMA8452Q::begin(void) {
+	uint8_t whoami;
+
+	Wire.begin();
+
+	whoami = registerRead(WHO_AM_I);
+
+	if (whoami != 0x2A)
+		return -1;
+
+	this -> active(true);
+
+	return 0;
+}
+
+uint8_t MMA8452Q::status(void) {
+	return registerRead(STATUS);
+}
+
+uint8_t MMA8452Q::sysmod(void) {
+	return registerRead(SYSMOD);
+}
+
+uint8_t MMA8452Q::intSource(void) {
+	return registerRead(INT_SOURCE);
+}
+
+void MMA8452Q::scale(uint8_t scale) {
+	uint8_t value = registerRead(XYZ_DATA_CFG);
+
+	switch (scale) {
+		case 2: bitWrite(value, 0, 0); bitWrite(value, 1, 0); break;
+		case 4: bitWrite(value, 0, 1); bitWrite(value, 1, 0); break;
+		case 8: bitWrite(value, 0, 0); bitWrite(value, 1, 1); break;
+	}
+}
+
+void MMA8452Q::offset(int8_t off_x, int8_t off_y, int8_t off_z) {
+	registerWrite(OFF_X, off_x);
+	registerWrite(OFF_Y, off_y);
+	registerWrite(OFF_Z, off_z);
+}
+
+void MMA8452Q::active(bool enable) {
+	registerSetBit(CTRL_REG1, ACTIVE, enable);
+}
+
+void MMA8452Q::fastRead(bool enable) {
+	registerSetBit(CTRL_REG1, F_READ, enable);
+}
+
+void MMA8452Q::lowNoise(bool enable) {
+	registerSetBit(CTRL_REG1, LNOISE, enable);
+}
+
+void MMA8452Q::reset(void) {
+	registerSetBit(CTRL_REG2, RST, 1);
+}
+
+void MMA8452Q::selfTest(bool enable) {
+	registerSetBit(CTRL_REG2, ST, enable);
+}
+
+void MMA8452Q::autoSleep(bool enable) {
+	registerSetBit(CTRL_REG2, SLPE, enable);
+}
+
+void MMA8452Q::intDataRdy(bool enable, uint8_t pin) {
+	registerSetBit(CTRL_REG4, INT_EN_DRDY, enable);
+	registerSetBit(CTRL_REG5, INT_CFG_DRDY, enable);
+}
+
+void MMA8452Q::intFreefallMotion(bool enable, uint8_t pin) {
+	registerSetBit(CTRL_REG4, INT_EN_FF_MT, enable);
+	registerSetBit(CTRL_REG5, INT_CFG_FF_MT, enable);
+}
+
+void MMA8452Q::intPulse(bool enable, uint8_t pin) {
+	registerSetBit(CTRL_REG4, INT_EN_PULSE, enable);
+	registerSetBit(CTRL_REG5, INT_CFG_PULSE, enable);
+}
+
+void MMA8452Q::intOrientation(bool enable, uint8_t pin) {
+	registerSetBit(CTRL_REG4, INT_EN_LNDPRT, enable);
+	registerSetBit(CTRL_REG5, INT_CFG_LNDPRT, enable);
+}
+
+void MMA8452Q::intAutoSlp(bool enable, uint8_t pin) {
+	registerSetBit(CTRL_REG4, INT_EN_ASLP, enable);
+	registerSetBit(CTRL_REG5, INT_CFG_ASLP, enable);
+}
+
+void MMA8452Q::axes(int axes[]) {
+	uint8_t *data;
+	uint8_t read_count = 0;
+	uint8_t val = registerRead(CTRL_REG1);
+
+	if (bitRead(val, F_READ) == 0)
+		read_count = 6;
+	else
+		read_count = 3;
+
+	data = new uint8_t[read_count];
+
+	registersRead(OUT_X_MSB, data, read_count);
+
+	for (int i = 0; i < 3; i++) {
+		axes[i]  = data[i * (read_count / 3)] << 8;
+
+		if (bitRead(val, F_READ) == 0)
+			axes[i] |= data[(i * 2) + 1];
+
+		axes[i] >>= 4;
+	}
+
+	delete[] data;
 }

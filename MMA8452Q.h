@@ -60,16 +60,10 @@ class MMA8452Q {
 		void autoSleep(bool enable);
 
 		void intDataRdy(bool enable, uint8_t pin);
-		void intFreefallMotion(bool enable);
-		void intPulse(bool enable);
-		void intOrientation(bool enable);
-		void intAutoSlp(bool enable);
-
-		uint8_t registerRead(uint8_t addr);
-		void registersRead(uint8_t addr, uint8_t data[], size_t count);
-
-		void registerWrite(uint8_t addr, uint8_t value);
-		void registersWrite(uint8_t addr, uint8_t data[], size_t count);
+		void intFreefallMotion(bool enable, uint8_t pin);
+		void intPulse(bool enable, uint8_t pin);
+		void intOrientation(bool enable, uint8_t pin);
+		void intAutoSlp(bool enable, uint8_t pin);
 };
 
 #endif
