@@ -3,6 +3,7 @@
 MMA8452Q accel;
 
 int axes[3];
+uint8_t orientation;
 
 void setup() {
 	Serial.begin(9600);
@@ -17,6 +18,9 @@ void setup() {
 
 	/* disable fast read (default) */
 	accel.fastRead(false);
+
+	/* enable orientation detection */
+	accel.detectOrientation(true);
 
 	/* calibrate axes */
 	/* accel.offset(-10, -2, 0); */
@@ -33,6 +37,23 @@ void loop() {
 	Serial.print(axes[1]);
 	Serial.print(", z: ");
 	Serial.println(axes[2]);
+
+	if (accel.orientation(&orientation)) {
+		switch (accel.portrait(orientation)) {
+			case HIGH: Serial.println("Portrait Up"); break;
+			case LOW: Serial.println("Portrait Down"); break;
+		}
+
+		switch (accel.landscape(orientation)) {
+			case HIGH: Serial.println("Landscape Right"); break;
+			case LOW: Serial.println("Landscape Left"); break;
+		}
+
+		if (accel.backFront(orientation))
+			Serial.println("Back");
+		else
+			Serial.println("Front");
+	}
 
 	delay(1000);
 }

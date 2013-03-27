@@ -50,6 +50,11 @@ class MMA8452Q {
 		void offset(int8_t off_x, int8_t off_y, int8_t off_z);
 
 		void axes(int axes[]);
+		bool orientation(uint8_t *value);
+
+		int landscape(uint8_t orientation);
+		int portrait(uint8_t orientation);
+		int backFront(uint8_t orientation);
 
 		void active(bool enable);
 		void fastRead(bool enable);
@@ -58,6 +63,8 @@ class MMA8452Q {
 		void reset(void);
 		void selfTest(bool enable);
 		void autoSleep(bool enable);
+
+		void detectOrientation(bool enable);
 
 		void intDataRdy(bool enable, uint8_t pin);
 		void intFreefallMotion(bool enable, uint8_t pin);

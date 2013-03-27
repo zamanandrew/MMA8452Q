@@ -121,6 +121,19 @@ enum MMA8452Q_CTRL_REG5 {
 	INT_CFG_ASLP   = 7
 };
 
+enum MMA8452Q_PL_STATUS {
+	BAFRO = 0,
+	LAPO0 = 1,
+	LAPO1 = 2,
+	LO    = 6,
+	NEWLP = 7
+};
+
+enum MMA8452Q_PL_CFG {
+	PL_EN  = 6,
+	DBCNTM = 7
+};
+
 static inline uint8_t registerRead(uint8_t addr) {
 	Wire.beginTransmission(MMA8452Q_ADDRESS);
 	Wire.write(addr);
@@ -238,6 +251,10 @@ void MMA8452Q::autoSleep(bool enable) {
 	registerSetBit(CTRL_REG2, SLPE, enable);
 }
 
+void MMA8452Q::detectOrientation(bool enable) {
+	registerSetBit(PL_CFG, PL_EN, enable);
+}
+
 void MMA8452Q::intDataRdy(bool enable, uint8_t pin) {
 	registerSetBit(CTRL_REG4, INT_EN_DRDY, enable);
 	registerSetBit(CTRL_REG5, INT_CFG_DRDY, enable);
@@ -287,4 +304,31 @@ void MMA8452Q::axes(int axes[]) {
 	}
 
 	delete[] data;
+}
+
+bool MMA8452Q::orientation(uint8_t *value) {
+	*value = registerRead(PL_STATUS);
+	return bitRead(*value, NEWLP);
+}
+
+int MMA8452Q::portrait(uint8_t orient) {
+	if ((bitRead(orient, LAPO1) == 0) && (bitRead(orient, LAPO0) == 0))
+		return HIGH;
+	else if ((bitRead(orient, LAPO1) == 0) && (bitRead(orient, LAPO0) == 1))
+		return LOW;
+	else
+		return -1;
+}
+
+int MMA8452Q::landscape(uint8_t orient) {
+	if ((bitRead(orient, LAPO1) == 1) && (bitRead(orient, LAPO0) == 0))
+		return HIGH;
+	else if ((bitRead(orient, LAPO1) == 1) && (bitRead(orient, LAPO0) == 1))
+		return LOW;
+	else
+		return -1;
+}
+
+int MMA8452Q::backFront(uint8_t orient) {
+	return bitRead(orient, BAFRO);
 }

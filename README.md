@@ -7,7 +7,6 @@ from an Arduino.
 
 ## TODO
 
-* Portrait/Landscape detection
 * Motion and freefall detection
 * Single and double tap detection
 * Auto-WAKE/SLEEP detection
