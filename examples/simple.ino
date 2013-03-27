@@ -11,6 +11,7 @@ void setup() {
 	if (accel.begin())
 		while (1); /* error */
 
+	/* the board MUST be inactive during setup */
 	accel.active(false);
 
 	/* set scale to 2g (default) */
@@ -22,9 +23,16 @@ void setup() {
 	/* enable orientation detection */
 	accel.detectOrientation(true);
 
+	/* enable auto-sleep/wake mode */
+	/* accel.autoSleep(true); */
+
+	/* enable low noise mode */
+	/* accel.lowNoise(true); */
+
 	/* calibrate axes */
 	/* accel.offset(-10, -2, 0); */
 
+	/* enable the board */
 	accel.active(true);
 }
 
