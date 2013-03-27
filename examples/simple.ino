@@ -29,6 +29,7 @@ void setup() {
 }
 
 void loop() {
+	/* get and print raw axes values */
 	accel.axes(axes);
 
 	Serial.print("x: ");
@@ -38,17 +39,21 @@ void loop() {
 	Serial.print(", z: ");
 	Serial.println(axes[2]);
 
+	/* get orientation status and check if it changed from last read */
 	if (accel.orientation(&orientation)) {
+		/* get and print portrait orientation status */
 		switch (accel.portrait(orientation)) {
 			case HIGH: Serial.println("Portrait Up"); break;
 			case LOW: Serial.println("Portrait Down"); break;
 		}
 
+		/* get and print landscape orientation status */
 		switch (accel.landscape(orientation)) {
 			case HIGH: Serial.println("Landscape Right"); break;
 			case LOW: Serial.println("Landscape Left"); break;
 		}
 
+		/* get and print back/front orientation status */
 		if (accel.backFront(orientation))
 			Serial.println("Back");
 		else
