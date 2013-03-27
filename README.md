@@ -11,16 +11,15 @@ This library has support for the following features:
 * Scale configuration (allowed 2g, 4g and 8g scales)
 * Custom offset calibration
 * Low noise mode
-* Auto-WAKE/SLEEP mode
 * Orientation detection (portrait/landscape and back/front)
 
 See the [simple.ino](examples/simple.ino) example for more information.
 
 ## TODO
 
+* Auto-WAKE/SLEEP mode and detection
 * Motion and freefall detection
 * Single and double tap detection
-* Auto-WAKE/SLEEP detection
 * Interrupts configuration
 
 ## DEPENDENCIES

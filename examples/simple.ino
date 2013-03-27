@@ -37,6 +37,13 @@ void setup() {
 }
 
 void loop() {
+	/* check board current mode */
+	switch (accel.sysmod()) {
+		case STANDBY: Serial.println("StandBy"); break;
+		case SLEEP:   Serial.println("Sleep"); break;
+		case WAKE:    Serial.println("Wake"); break;
+	}
+
 	/* get and print raw axes values */
 	accel.axes(axes);
 

@@ -36,6 +36,12 @@ enum MMA8452Q_INTERRUPTS {
 	MMA8452Q_INT2 = 0
 };
 
+enum MMA8452Q_SYSMOD {
+	STANDBY = 0b00,
+	WAKE    = 0b01,
+	SLEEP   = 0b10
+};
+
 class MMA8452Q {
 	public:
 		MMA8452Q();
@@ -65,6 +71,10 @@ class MMA8452Q {
 		void autoSleep(bool enable);
 
 		void detectOrientation(bool enable);
+
+		void wakeFreefallMotion(bool enable);
+		void wakePulse(bool enable);
+		void wakeOrientation(bool enable);
 
 		void intDataRdy(bool enable, uint8_t pin);
 		void intFreefallMotion(bool enable, uint8_t pin);

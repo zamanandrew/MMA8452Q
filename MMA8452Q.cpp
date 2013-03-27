@@ -78,12 +78,6 @@ enum MMA8452Q_STATUS {
 	X_DR   = 0b00000001
 };
 
-enum MMA8452Q_SYSMOD {
-	STANDBY = 0b00,
-	WAKE    = 0b01,
-	SLEEP   = 0b10
-};
-
 enum MMA8452Q_CTRL_REG1 {
 	ACTIVE = 0,
 	F_READ = 1,
@@ -101,6 +95,15 @@ enum MMA8452Q_CTRL_REG2 {
 	SMODS1 = 4,
 	RST    = 6,
 	ST     = 7
+};
+
+enum MMA8452Q_CTRL_REG3 {
+	PP_OD       = 0,
+	IPOL        = 1,
+	WAKE_FF_MT  = 3,
+	WAKE_PULSE  = 4,
+	WAKE_LNDPRT = 5,
+	WAKE_TRANS  = 6
 };
 
 enum MMA8452Q_CTRL_REG4 {
@@ -253,6 +256,18 @@ void MMA8452Q::autoSleep(bool enable) {
 
 void MMA8452Q::detectOrientation(bool enable) {
 	registerSetBit(PL_CFG, PL_EN, enable);
+}
+
+void MMA8452Q::wakeFreefallMotion(bool enable) {
+	registerSetBit(CTRL_REG3, WAKE_FF_MT, enable);
+}
+
+void MMA8452Q::wakePulse(bool enable) {
+	registerSetBit(CTRL_REG3, WAKE_PULSE, enable);
+}
+
+void MMA8452Q::wakeOrientation(bool enable) {
+	registerSetBit(CTRL_REG3, WAKE_LNDPRT, enable);
 }
 
 void MMA8452Q::intDataRdy(bool enable, uint8_t pin) {
