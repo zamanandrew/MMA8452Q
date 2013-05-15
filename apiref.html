@@ -54,6 +54,36 @@
 <blockquote>
 <div><p></p>
 <p></p>
+<em>Public Type</em><blockquote>
+<div><p id=""><span id="MMA8452QclassMMA8452Q_1af4dca8c6babe3b568a009c50f1e9ef29"></span><strong>MMA8452Q_SYSMOD enum</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+<p><em>Values:</em></p>
+<ul class="breatheenumvalues">
+<li><tt class="first docutils literal"><span class="pre">STANDBY</span></tt> - <p>Stand-by system mode </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">WAKE</span></tt> - <p>Wake system mode </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">SLEEP</span></tt> - <p>Sleep system mode </p>
+</li>
+</ul>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a00f60f98c7e02152f16f3cc1a393c303"></span><strong>MMA8452Q_EVENTS enum</strong></p>
+<blockquote>
+<div><p></p>
+<p></p>
+<p><em>Values:</em></p>
+<ul class="breatheenumvalues">
+<li><tt class="first docutils literal"><span class="pre">FREEFALL_MOTION</span></tt><tt class="docutils literal"> <span class="pre">=</span>  <span class="pre">0x01</span></tt> - <p>Freefall/motion event </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">PULSE</span></tt><tt class="docutils literal"> <span class="pre">=</span>  <span class="pre">0x02</span></tt> - <p>Pulse (tap) event </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">ORIENTATION</span></tt><tt class="docutils literal"> <span class="pre">=</span>  <span class="pre">0x04</span></tt> - <p>Orientation change event </p>
+</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
 <em>Public Functions</em><blockquote>
 <div><p id=""><span id="MMA8452QclassMMA8452Q_1a90514b9ed3f2a104dc3263da3cb691c7"></span><div class="line-block">
 <div class="line"> <strong>MMA8452Q</strong>()</div>
@@ -69,7 +99,7 @@
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
+<p>Initialize the <a class="reference internal" href="#MMA8452QclassMMA8452Q"><em>MMA8452Q</em></a>. </p>
 </div></blockquote>
 <p id=""><span id="MMA8452QclassMMA8452Q_1a84c329c1a240e5c30459d5b20e89e777"></span><div class="line-block">
 <div class="line">uint8_t <strong>status</strong>(void)</div>
@@ -77,7 +107,7 @@
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
+<p>Read the status of the <a class="reference internal" href="#MMA8452QclassMMA8452Q"><em>MMA8452Q</em></a>. </p>
 </div></blockquote>
 <p id=""><span id="MMA8452QclassMMA8452Q_1a3149d754c5e9989ea821f13ba14fe634"></span><div class="line-block">
 <div class="line">uint8_t <strong>sysmod</strong>(void)</div>
@@ -85,7 +115,29 @@
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
+<p><p>Read the system mode of the <a class="reference internal" href="#MMA8452QclassMMA8452Q"><em>MMA8452Q</em></a>.</p>
+<p>
+Example: <div class="highlight-c++"><div class="highlight"><pre><span class="k">switch</span> <span class="p">(</span><span class="n">accel</span><span class="p">.</span><span class="n">sysmod</span><span class="p">())</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="n">MMA8452Q</span>:<span class="o">:</span><span class="n">STANDBY</span><span class="o">:</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;StandBy&quot;</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+
+  <span class="k">case</span> <span class="n">MMA8452Q</span>:<span class="o">:</span><span class="n">SLEEP</span><span class="o">:</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Sleep&quot;</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+
+  <span class="k">case</span> <span class="n">MMA8452Q</span>:<span class="o">:</span><span class="n">WAKE</span><span class="o">:</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Wake&quot;</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+ <dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>- One of the MMA8452Q_SYSMOD values.</dd>
+</dl>
+</p>
+</p>
 </div></blockquote>
 <p id=""><span id="MMA8452QclassMMA8452Q_1a35924b00ae3b8e06c380cf67bcbeca81"></span><div class="line-block">
 <div class="line">uint8_t <strong>intSource</strong>(void)</div>
@@ -93,7 +145,7 @@
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
+<p>Read the source pin of the last interrupt. </p>
 </div></blockquote>
 <p id=""><span id="MMA8452QclassMMA8452Q_1af434be7396de6f3b163bf5a442709b3a"></span><div class="line-block">
 <div class="line">void <strong>scale</strong>(uint8_t scale)</div>
@@ -101,7 +153,24 @@
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
+<p><p>Set the scale of the <a class="reference internal" href="#MMA8452QclassMMA8452Q"><em>MMA8452Q</em></a>.</p>
+<p>Before calling this method, the <a class="reference internal" href="#MMA8452QclassMMA8452Q"><em>MMA8452Q</em></a> must be disabled using the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1ad733cdab6cc00c0bb3bb4e1c804a7d8e"><em>active()</em></a> method.</p>
+<p>
+Example: <div class="highlight-c++"><div class="highlight"><pre><span class="n">accel</span><span class="p">.</span><span class="n">active</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="n">accel</span><span class="p">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">accel</span><span class="p">.</span><span class="n">active</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</pre></div>
+</div>
+ <dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">scale</span></tt> - <p>- scale can be 2, 4, or 8.</p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
 </div></blockquote>
 <p id=""><span id="MMA8452QclassMMA8452Q_1a2b83ff8604cb5304ff1d2bfc9acd3e73"></span><div class="line-block">
 <div class="line">void <strong>offset</strong>(int8_t off_x, int8_t off_y, int8_t off_z)</div>
@@ -109,15 +178,57 @@
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
+<p><p>Calibrate the <a class="reference internal" href="#MMA8452QclassMMA8452Q"><em>MMA8452Q</em></a>.</p>
+<p>Before calling this method, the <a class="reference internal" href="#MMA8452QclassMMA8452Q"><em>MMA8452Q</em></a> must be disabled using the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1ad733cdab6cc00c0bb3bb4e1c804a7d8e"><em>active()</em></a> method.</p>
+<p>
+Example: <div class="highlight-c++"><div class="highlight"><pre><span class="n">accel</span><span class="p">.</span><span class="n">active</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="n">accel</span><span class="p">.</span><span class="n">offset</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="n">accel</span><span class="p">.</span><span class="n">active</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</pre></div>
+</div>
+ <dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">off_x</span></tt> - <p>- X axis calibration. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">off_y</span></tt> - <p>- Y axis calibration. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">off_z</span></tt> - <p>- Z axis calibration.</p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
 </div></blockquote>
-<p id=""><span id="MMA8452QclassMMA8452Q_1a9f0963aa6570e467914446d328d448c1"></span><div class="line-block">
-<div class="line">void <strong>axes</strong>(int axes)</div>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a7d41ce51b9e6e6d36057ceccaa5b1c9a"></span><div class="line-block">
+<div class="line">void <strong>axes</strong>(int * axes)</div>
 </div>
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
+<p><p>Read the raw values of the axes.</p>
+<p>
+Example: <div class="highlight-c++"><div class="highlight"><pre><span class="kt">int</span> <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">;</span>
+
+<span class="n">accel</span><span class="p">.</span><span class="n">axes</span><span class="p">(</span><span class="n">axes</span><span class="p">);</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</pre></div>
+</div>
+ <dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">axes</span></tt> - <p>- output array of size 3 (must be allocated by the user).</p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
 </div></blockquote>
 <p id=""><span id="MMA8452QclassMMA8452Q_1a9479cea468bcede2fccf194520e74133"></span><div class="line-block">
 <div class="line">bool <strong>orientation</strong>(uint8_t * value)</div>
@@ -125,7 +236,28 @@
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
+<p><p>Read the orientation value.</p>
+<p>Before calling this method, the orientation detection must be activated using the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1a4bd9c68e30119d600b07c9bd1302c188"><em>detectOrientation()</em></a> method.</p>
+<p>
+Example: <div class="highlight-c++"><div class="highlight"><pre><span class="kt">uint8_t</span> <span class="n">orientation</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">accel</span><span class="p">.</span><span class="n">orientation</span><span class="p">(</span><span class="o">&amp;</span><span class="n">orientation</span><span class="p">))</span> <span class="p">{</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+ <dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>Whether the orientation has changed since the last read.</dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">value</span></tt> - <p>- output value. </p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
 </div></blockquote>
 <p id=""><span id="MMA8452QclassMMA8452Q_1a710bc41f957a87b31ce8fc1d2c6cc1b0"></span><div class="line-block">
 <div class="line">int <strong>landscape</strong>(uint8_t orientation)</div>
@@ -133,7 +265,39 @@
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
+<p><p>Read the landscape orientation status.</p>
+<p>
+Example: <div class="highlight-c++"><div class="highlight"><pre><span class="kt">uint8_t</span> <span class="n">orientation</span><span class="p">;</span>
+
+<span class="n">accel</span><span class="p">.</span><span class="n">orientation</span><span class="p">(</span><span class="o">&amp;</span><span class="n">orientation</span><span class="p">));</span>
+
+<span class="k">switch</span> <span class="p">(</span><span class="n">accel</span><span class="p">.</span><span class="n">landscape</span><span class="p">(</span><span class="n">orientation</span><span class="p">))</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="n">HIGH</span>:
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Landscape Right&quot;</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+
+  <span class="k">case</span> <span class="n">LOW</span>:
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Landscape Left&quot;</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+
+  <span class="nl">default:</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Error&quot;</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+ <dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>Whether the landscape orientation is right or left.</dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">orientation</span></tt> - <p>- The orientation set by the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1a9479cea468bcede2fccf194520e74133"><em>orientation()</em></a> method. </p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
 </div></blockquote>
 <p id=""><span id="MMA8452QclassMMA8452Q_1a2bbd2a412e1c9085bf63a2b98b29a691"></span><div class="line-block">
 <div class="line">int <strong>portrait</strong>(uint8_t orientation)</div>
@@ -141,7 +305,39 @@
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
+<p><p>Read the portrait orientation status.</p>
+<p>
+Example: <div class="highlight-c++"><div class="highlight"><pre><span class="kt">uint8_t</span> <span class="n">orientation</span><span class="p">;</span>
+
+<span class="n">accel</span><span class="p">.</span><span class="n">orientation</span><span class="p">(</span><span class="o">&amp;</span><span class="n">orientation</span><span class="p">));</span>
+
+<span class="k">switch</span> <span class="p">(</span><span class="n">accel</span><span class="p">.</span><span class="n">portrait</span><span class="p">(</span><span class="n">orientation</span><span class="p">))</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="n">HIGH</span>:
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Portrait Up&quot;</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+
+  <span class="k">case</span> <span class="n">LOW</span>:
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Portrait Down&quot;</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+
+  <span class="nl">default:</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Error&quot;</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+ <dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>Whether the portrait orientation is up or down.</dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">orientation</span></tt> - <p>- The orientation set by the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1a9479cea468bcede2fccf194520e74133"><em>orientation()</em></a> method. </p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
 </div></blockquote>
 <p id=""><span id="MMA8452QclassMMA8452Q_1a4e47f8f7245ce5e4228ace61f03d5eff"></span><div class="line-block">
 <div class="line">int <strong>backFront</strong>(uint8_t orientation)</div>
@@ -149,7 +345,30 @@
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
+<p><p>Read the back/front orientation status.</p>
+<p>
+Example: <div class="highlight-c++"><div class="highlight"><pre><span class="kt">uint8_t</span> <span class="n">orientation</span><span class="p">;</span>
+
+<span class="n">accel</span><span class="p">.</span><span class="n">orientation</span><span class="p">(</span><span class="o">&amp;</span><span class="n">orientation</span><span class="p">));</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">accel</span><span class="p">.</span><span class="n">backFront</span><span class="p">(</span><span class="n">orientation</span><span class="p">))</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Back&quot;</span><span class="p">);</span>
+<span class="k">else</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Front&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+ <dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>Whether the orientation is back or front.</dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">orientation</span></tt> - <p>- The orientation set by the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1a9479cea468bcede2fccf194520e74133"><em>orientation()</em></a> method. </p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
 </div></blockquote>
 <p id=""><span id="MMA8452QclassMMA8452Q_1ad733cdab6cc00c0bb3bb4e1c804a7d8e"></span><div class="line-block">
 <div class="line">void <strong>active</strong>(bool enable)</div>
@@ -157,7 +376,17 @@
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
+<p><p>Enable/disable the <a class="reference internal" href="#MMA8452QclassMMA8452Q"><em>MMA8452Q</em></a>.</p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>- Whether to enable or disable the <a class="reference internal" href="#MMA8452QclassMMA8452Q"><em>MMA8452Q</em></a>. </p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
 </div></blockquote>
 <p id=""><span id="MMA8452QclassMMA8452Q_1a3bad280a7f4365397d6493e127f3f4d7"></span><div class="line-block">
 <div class="line">void <strong>fastRead</strong>(bool enable)</div>
@@ -165,7 +394,24 @@
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
+<p><p>Enable/disable the fast read mode.</p>
+<p>Before calling this method, the <a class="reference internal" href="#MMA8452QclassMMA8452Q"><em>MMA8452Q</em></a> must be disabled using the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1ad733cdab6cc00c0bb3bb4e1c804a7d8e"><em>active()</em></a> method.</p>
+<p>
+Example: <div class="highlight-c++"><div class="highlight"><pre><span class="n">accel</span><span class="p">.</span><span class="n">active</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="n">accel</span><span class="p">.</span><span class="n">fastRead</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+<span class="n">accel</span><span class="p">.</span><span class="n">active</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</pre></div>
+</div>
+ <dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>- Whether to enable or disable the fast read mode.</p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
 </div></blockquote>
 <p id=""><span id="MMA8452QclassMMA8452Q_1ad8f3b3133e82a1a66cfbf8a637626cc8"></span><div class="line-block">
 <div class="line">void <strong>lowNoise</strong>(bool enable)</div>
@@ -173,7 +419,24 @@
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
+<p><p>Enable/disable the low noise mode.</p>
+<p>Before calling this method, the <a class="reference internal" href="#MMA8452QclassMMA8452Q"><em>MMA8452Q</em></a> must be disabled using the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1ad733cdab6cc00c0bb3bb4e1c804a7d8e"><em>active()</em></a> method.</p>
+<p>
+Example: <div class="highlight-c++"><div class="highlight"><pre><span class="n">accel</span><span class="p">.</span><span class="n">active</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="n">accel</span><span class="p">.</span><span class="n">lowNoise</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+<span class="n">accel</span><span class="p">.</span><span class="n">active</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</pre></div>
+</div>
+ <dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>- Whether to enable or disable the low noise mode.</p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
 </div></blockquote>
 <p id=""><span id="MMA8452QclassMMA8452Q_1ad23f13274acdca37ad4a9c1b41ce96b6"></span><div class="line-block">
 <div class="line">void <strong>reset</strong>(void)</div>
@@ -181,7 +444,7 @@
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
+<p>Reset the <a class="reference internal" href="#MMA8452QclassMMA8452Q"><em>MMA8452Q</em></a>. </p>
 </div></blockquote>
 <p id=""><span id="MMA8452QclassMMA8452Q_1a864575b113a4f7cc9b6d053441387ecc"></span><div class="line-block">
 <div class="line">void <strong>selfTest</strong>(bool enable)</div>
@@ -189,7 +452,24 @@
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
+<p><p>Enable/disable the self-test mode.</p>
+<p>Before calling this method, the <a class="reference internal" href="#MMA8452QclassMMA8452Q"><em>MMA8452Q</em></a> must be disabled using the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1ad733cdab6cc00c0bb3bb4e1c804a7d8e"><em>active()</em></a> method.</p>
+<p>
+Example: <div class="highlight-c++"><div class="highlight"><pre><span class="n">accel</span><span class="p">.</span><span class="n">active</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="n">accel</span><span class="p">.</span><span class="n">selfTest</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+<span class="n">accel</span><span class="p">.</span><span class="n">active</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</pre></div>
+</div>
+ <dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>- Whether to enable or disable the self-test mode.</p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
 </div></blockquote>
 <p id=""><span id="MMA8452QclassMMA8452Q_1ac03821c6df12ffc8bbda42866401eeca"></span><div class="line-block">
 <div class="line">void <strong>autoSleep</strong>(bool enable)</div>
@@ -197,7 +477,24 @@
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
+<p><p>Enable/disable the auto-sleep mode.</p>
+<p>Before calling this method, the <a class="reference internal" href="#MMA8452QclassMMA8452Q"><em>MMA8452Q</em></a> must be disabled using the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1ad733cdab6cc00c0bb3bb4e1c804a7d8e"><em>active()</em></a> method.</p>
+<p>
+Example: <div class="highlight-c++"><div class="highlight"><pre><span class="n">accel</span><span class="p">.</span><span class="n">active</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="n">accel</span><span class="p">.</span><span class="n">autoSleep</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+<span class="n">accel</span><span class="p">.</span><span class="n">active</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</pre></div>
+</div>
+ <dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>- Whether to enable or disable the auto-sleep mode.</p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
 </div></blockquote>
 <p id=""><span id="MMA8452QclassMMA8452Q_1a4bd9c68e30119d600b07c9bd1302c188"></span><div class="line-block">
 <div class="line">void <strong>detectOrientation</strong>(bool enable)</div>
@@ -205,71 +502,51 @@
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
+<p><p>Enable/disable the orientation detection.</p>
+<p>Before calling this method, the <a class="reference internal" href="#MMA8452QclassMMA8452Q"><em>MMA8452Q</em></a> must be disabled using the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1ad733cdab6cc00c0bb3bb4e1c804a7d8e"><em>active()</em></a> method.</p>
+<p>
+Example: <div class="highlight-c++"><div class="highlight"><pre><span class="n">accel</span><span class="p">.</span><span class="n">active</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="n">accel</span><span class="p">.</span><span class="n">detectOrientation</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+<span class="n">accel</span><span class="p">.</span><span class="n">active</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</pre></div>
+</div>
+ <dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>- Whether to enable or disable the orientation detection.</p>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</p>
 </div></blockquote>
-<p id=""><span id="MMA8452QclassMMA8452Q_1a19d876243062c8258defeb3a227d1a49"></span><div class="line-block">
-<div class="line">void <strong>wakeFreefallMotion</strong>(bool enable)</div>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a72c706ce21b076c96fb8cc5e135f49c5"></span><div class="line-block">
+<div class="line">void <strong>wakeOn</strong>(bool enable, uint8_t events)</div>
 </div>
 </p>
 <blockquote>
 <div><p></p>
-<p></p>
-</div></blockquote>
-<p id=""><span id="MMA8452QclassMMA8452Q_1abe99da6520ed6efadaee9de30329ddb4"></span><div class="line-block">
-<div class="line">void <strong>wakePulse</strong>(bool enable)</div>
+<p><p>Enable/disable auto-wake on specific events.</p>
+<p>Before calling this method, the <a class="reference internal" href="#MMA8452QclassMMA8452Q"><em>MMA8452Q</em></a> must be disabled using the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1ad733cdab6cc00c0bb3bb4e1c804a7d8e"><em>active()</em></a> method.</p>
+<p>
+Example: <div class="highlight-c++"><div class="highlight"><pre><span class="n">accel</span><span class="p">.</span><span class="n">active</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="n">accel</span><span class="p">.</span><span class="n">wakeOn</span><span class="p">(</span><span class="nb">true</span><span class="p">,</span> <span class="n">FREEFALL_MOTION</span> <span class="o">|</span> <span class="n">ORIENTATION</span><span class="p">);</span>
+<span class="n">accel</span><span class="p">.</span><span class="n">active</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</pre></div>
 </div>
+ <dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last">
+<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>- Whether to enable or disable the auto-wake on the selected events. </p>
+</li>
+<li><tt class="first docutils literal"><span class="pre">events</span></tt> - <p>- Bit mask listing the desired events. The possible events are listed by the MMA8452Q_EVENTS enum.</p>
+</li>
+</ul>
+</dd>
+</dl>
 </p>
-<blockquote>
-<div><p></p>
-<p></p>
-</div></blockquote>
-<p id=""><span id="MMA8452QclassMMA8452Q_1aac88bf81f648b16eb92e471356941985"></span><div class="line-block">
-<div class="line">void <strong>wakeOrientation</strong>(bool enable)</div>
-</div>
 </p>
-<blockquote>
-<div><p></p>
-<p></p>
-</div></blockquote>
-<p id=""><span id="MMA8452QclassMMA8452Q_1a2752103307d4419c603fccf24d39f941"></span><div class="line-block">
-<div class="line">void <strong>intDataRdy</strong>(bool enable, uint8_t pin)</div>
-</div>
-</p>
-<blockquote>
-<div><p></p>
-<p></p>
-</div></blockquote>
-<p id=""><span id="MMA8452QclassMMA8452Q_1ac09630226840f09925992cb2a84b10da"></span><div class="line-block">
-<div class="line">void <strong>intFreefallMotion</strong>(bool enable, uint8_t pin)</div>
-</div>
-</p>
-<blockquote>
-<div><p></p>
-<p></p>
-</div></blockquote>
-<p id=""><span id="MMA8452QclassMMA8452Q_1a2e0a3eade634808432915c2a0733a914"></span><div class="line-block">
-<div class="line">void <strong>intPulse</strong>(bool enable, uint8_t pin)</div>
-</div>
-</p>
-<blockquote>
-<div><p></p>
-<p></p>
-</div></blockquote>
-<p id=""><span id="MMA8452QclassMMA8452Q_1a236ddea1243050891c53024f1ceb4488"></span><div class="line-block">
-<div class="line">void <strong>intOrientation</strong>(bool enable, uint8_t pin)</div>
-</div>
-</p>
-<blockquote>
-<div><p></p>
-<p></p>
-</div></blockquote>
-<p id=""><span id="MMA8452QclassMMA8452Q_1a2f47c6627274f46667cde526a7a16c55"></span><div class="line-block">
-<div class="line">void <strong>intAutoSlp</strong>(bool enable, uint8_t pin)</div>
-</div>
-</p>
-<blockquote>
-<div><p></p>
-<p></p>
 </div></blockquote>
 </div></blockquote>
 </div></blockquote>

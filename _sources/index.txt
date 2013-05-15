@@ -13,6 +13,7 @@ FEATURES
 * Custom offset calibration
 * Low noise mode
 * Orientation detection (portrait/landscape and back/front)
+* Auto-WAKE/SLEEP mode and detection
 
 See the API reference_ for more information.
 
@@ -21,7 +22,6 @@ See the API reference_ for more information.
 TODO
 ----
 
-* Auto-WAKE/SLEEP mode and detection
 * Motion and freefall detection
 * Single and double tap detection
 * Interrupts configuration

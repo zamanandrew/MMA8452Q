@@ -38,19 +38,33 @@ div.sphinxsidebarwrapper {
 div.sphinxsidebarwrapper ul { padding-left: 13px; }
 div.sphinxsidebarwrapper ul ul { padding-left: 0; }
 
-tt {
-	color: black;
-	background-color: #eee;
-	padding: 0 0.5ex;
-}
-
 pre {
-	font-size: 12pt;
-	line-height: 1em;
-	border: 1px solid black;
-	padding: 1em;
-	background-color: #555;
-	color: #fea;
+	color: #444;
+	display: block;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #DEDEDE;
+	font-family: monospace;
+	font-size: 14px;
+
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 0px;
+	padding-top: 10px;
+	margin-bottom: 20px;
+
+	white-space: pre;
+	background-color: #ghostWhite;
 }
 
 .footer { padding-bottom: 1em; }
+
+/* So enum value descriptions are displayed inline to the item */
+.breatheenumvalues li tt + p {
+	display: inline;
+}
+
+/* So parameter descriptions are displayed inline to the item */
+.breatheparameterlist li tt + p {
+	display: inline;
+}
