@@ -39,9 +39,9 @@ public:
 /* }; */
 
 enum MMA8452Q_SYSMOD {
-	STANDBY = 0b00,
-	WAKE    = 0b01,
-	SLEEP   = 0b10
+	STANDBY,
+	WAKE,
+	SLEEP
 };
 
 MMA8452Q();
@@ -53,6 +53,8 @@ int begin(void);
 uint8_t status(void);
 
 /*! Read the system mode of the MMA8452Q.
+
+\return - One of the MMA8452Q_SYSMOD values.
 
 Example:
 \verbatim embed:rst
