@@ -75,7 +75,7 @@ void loop() {
 				break;
 
 			default:
-				Serial.println("Error");
+				Serial.println("No Portrait");
 				break;
 		}
 
@@ -90,7 +90,7 @@ void loop() {
 				break;
 
 			default:
-				Serial.println("Error");
+				Serial.println("No Landscape");
 				break;
 		}
 

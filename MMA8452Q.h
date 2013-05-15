@@ -192,7 +192,7 @@ Example:
       break;
 
     default:
-      Serial.println("Error");
+      Serial.println("No Orientation");
       break;
   }
 \endverbatim
@@ -222,7 +222,7 @@ Example:
       break;
 
     default:
-      Serial.println("Error");
+      Serial.println("No Portrait");
       break;
   }
 \endverbatim
@@ -370,7 +370,7 @@ Example:
   accel.active(true);
 \endverbatim
  */
-void MMA8452Q::wakeOn(bool enable, uint8_t events);
+void wakeOn(bool enable, uint8_t events);
 
 /* void intDataRdy(bool enable, uint8_t pin); */
 /* void intFreefallMotion(bool enable, uint8_t pin); */
