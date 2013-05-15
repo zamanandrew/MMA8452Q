@@ -1,0 +1,23 @@
+{% extends "!layout.html" %}
+
+{% block extrahead %}
+<link rel="stylesheet" type="text/css" href="_static/style.css">
+{% endblock %}
+
+{% block relbar1 %}{% endblock %}
+{% block relbar2 %}{% endblock %}
+
+{% block sidebar1 %}
+<div class="sphinxsidebar">
+	<div class="sphinxsidebarwrapper">
+		<a href="/"><img src="_static/logo.png"/></a>
+		{{ toc }}
+	</div>
+</div>
+{% endblock %}
+
+{% block sidebar2 %}{% endblock %}
+
+{% block footer %}
+	{{ super() }}
+{% endblock %}

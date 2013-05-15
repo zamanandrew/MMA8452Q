@@ -14,7 +14,9 @@ FEATURES
 * Low noise mode
 * Orientation detection (portrait/landscape and back/front)
 
-See the :download:`simple.ino <../examples/simple.ino>` example.
+See the API reference_ for more information.
+
+.. _reference: http://ghedo.github.io/MMA8452Q/apiref.html
 
 TODO
 ----
