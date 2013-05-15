@@ -1,0 +1,291 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>API Reference &mdash; MMA8452Q 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/breathe.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="MMA8452Q 0.1 documentation" href="index.html" />
+<link rel="stylesheet" type="text/css" href="_static/style.css">
+
+  </head>
+  <body>
+<div class="sphinxsidebar">
+	<div class="sphinxsidebarwrapper">
+		<a href="/"><img src="_static/logo.png"/></a>
+		<ul>
+<li><a class="reference internal" href="#">API Reference</a></li>
+</ul>
+
+	</div>
+</div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line" id=""><span id="MMA8452QclassMMA8452Q"></span><em>class</em> <strong>MMA8452Q</strong></div>
+</div>
+<blockquote>
+<div><p></p>
+<p></p>
+<em>Public Functions</em><blockquote>
+<div><p id=""><span id="MMA8452QclassMMA8452Q_1a90514b9ed3f2a104dc3263da3cb691c7"></span><div class="line-block">
+<div class="line"> <strong>MMA8452Q</strong>()</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a2f933ac99089405b20d45368ddeb3fc3"></span><div class="line-block">
+<div class="line">int <strong>begin</strong>(void)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a84c329c1a240e5c30459d5b20e89e777"></span><div class="line-block">
+<div class="line">uint8_t <strong>status</strong>(void)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a3149d754c5e9989ea821f13ba14fe634"></span><div class="line-block">
+<div class="line">uint8_t <strong>sysmod</strong>(void)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a35924b00ae3b8e06c380cf67bcbeca81"></span><div class="line-block">
+<div class="line">uint8_t <strong>intSource</strong>(void)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1af434be7396de6f3b163bf5a442709b3a"></span><div class="line-block">
+<div class="line">void <strong>scale</strong>(uint8_t scale)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a2b83ff8604cb5304ff1d2bfc9acd3e73"></span><div class="line-block">
+<div class="line">void <strong>offset</strong>(int8_t off_x, int8_t off_y, int8_t off_z)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a9f0963aa6570e467914446d328d448c1"></span><div class="line-block">
+<div class="line">void <strong>axes</strong>(int axes)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a9479cea468bcede2fccf194520e74133"></span><div class="line-block">
+<div class="line">bool <strong>orientation</strong>(uint8_t * value)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a710bc41f957a87b31ce8fc1d2c6cc1b0"></span><div class="line-block">
+<div class="line">int <strong>landscape</strong>(uint8_t orientation)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a2bbd2a412e1c9085bf63a2b98b29a691"></span><div class="line-block">
+<div class="line">int <strong>portrait</strong>(uint8_t orientation)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a4e47f8f7245ce5e4228ace61f03d5eff"></span><div class="line-block">
+<div class="line">int <strong>backFront</strong>(uint8_t orientation)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1ad733cdab6cc00c0bb3bb4e1c804a7d8e"></span><div class="line-block">
+<div class="line">void <strong>active</strong>(bool enable)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a3bad280a7f4365397d6493e127f3f4d7"></span><div class="line-block">
+<div class="line">void <strong>fastRead</strong>(bool enable)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1ad8f3b3133e82a1a66cfbf8a637626cc8"></span><div class="line-block">
+<div class="line">void <strong>lowNoise</strong>(bool enable)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1ad23f13274acdca37ad4a9c1b41ce96b6"></span><div class="line-block">
+<div class="line">void <strong>reset</strong>(void)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a864575b113a4f7cc9b6d053441387ecc"></span><div class="line-block">
+<div class="line">void <strong>selfTest</strong>(bool enable)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1ac03821c6df12ffc8bbda42866401eeca"></span><div class="line-block">
+<div class="line">void <strong>autoSleep</strong>(bool enable)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a4bd9c68e30119d600b07c9bd1302c188"></span><div class="line-block">
+<div class="line">void <strong>detectOrientation</strong>(bool enable)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a19d876243062c8258defeb3a227d1a49"></span><div class="line-block">
+<div class="line">void <strong>wakeFreefallMotion</strong>(bool enable)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1abe99da6520ed6efadaee9de30329ddb4"></span><div class="line-block">
+<div class="line">void <strong>wakePulse</strong>(bool enable)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1aac88bf81f648b16eb92e471356941985"></span><div class="line-block">
+<div class="line">void <strong>wakeOrientation</strong>(bool enable)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a2752103307d4419c603fccf24d39f941"></span><div class="line-block">
+<div class="line">void <strong>intDataRdy</strong>(bool enable, uint8_t pin)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1ac09630226840f09925992cb2a84b10da"></span><div class="line-block">
+<div class="line">void <strong>intFreefallMotion</strong>(bool enable, uint8_t pin)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a2e0a3eade634808432915c2a0733a914"></span><div class="line-block">
+<div class="line">void <strong>intPulse</strong>(bool enable, uint8_t pin)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a236ddea1243050891c53024f1ceb4488"></span><div class="line-block">
+<div class="line">void <strong>intOrientation</strong>(bool enable, uint8_t pin)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+<p id=""><span id="MMA8452QclassMMA8452Q_1a2f47c6627274f46667cde526a7a16c55"></span><div class="line-block">
+<div class="line">void <strong>intAutoSlp</strong>(bool enable, uint8_t pin)</div>
+</div>
+</p>
+<blockquote>
+<div><p></p>
+<p></p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+	
+    <div class="footer">
+        &copy; Copyright 2013, Alessandro Ghedini.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>
