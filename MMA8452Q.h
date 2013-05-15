@@ -39,9 +39,15 @@ public:
 /* }; */
 
 enum MMA8452Q_SYSMOD {
-	STANDBY,
-	WAKE,
-	SLEEP
+	STANDBY, /**< Stand-by system mode */
+	WAKE,    /**< Wake system mode */
+	SLEEP    /**< Sleep system mode */
+};
+
+enum MMA8452Q_EVENTS {
+	FREEFALL_MOTION = 0x01, /**< Freefall/motion event */
+	PULSE           = 0x02, /**< Pulse (tap) event */
+	ORIENTATION     = 0x04  /**< Orientation change event */
 };
 
 MMA8452Q();
@@ -345,62 +351,26 @@ Example:
  */
 void detectOrientation(bool enable);
 
-
-/*! Enable/disable auto-wake on freefall/motion detection.
+/*! Enable/disable auto-wake on specific events.
 
 Before calling this method, the MMA8452Q must be disabled using the active()
 method.
 
-\param enable - Whether to enable or disable the auto-wake on freefall/motion
-detection.
+\param enable - Whether to enable or disable the auto-wake on the selected
+events.
+\param events - Bit mask listing the desired events. The possible events are
+listed by the MMA8452Q_EVENTS enum.
 
 Example:
 \verbatim embed:rst
 .. code-block:: c++
 
   accel.active(false);
-  accel.wakeFreefallMotion(true);
+  accel.wakeOn(true, FREEFALL_MOTION | ORIENTATION);
   accel.active(true);
 \endverbatim
  */
-void wakeFreefallMotion(bool enable);
-
-/*! Enable/disable auto-wake on pulse detection.
-
-Before calling this method, the MMA8452Q must be disabled using the active()
-method.
-
-\param enable - Whether to enable or disable the auto-wake on pulse detection.
-
-Example:
-\verbatim embed:rst
-.. code-block:: c++
-
-  accel.active(false);
-  accel.wakePulse(true);
-  accel.active(true);
-\endverbatim
- */
-void wakePulse(bool enable);
-
-/*! Enable/disable auto-wake on orientation change detection.
-
-Before calling this method, the MMA8452Q must be disabled using the active()
-method.
-
-\param enable - Whether to enable or disable the auto-wake on orientation change
-detection.
-
-Example:
-\verbatim embed:rst
-.. code-block:: c++
-
-  accel.active(false);
-  accel.wakeOrientation(true);
-  accel.active(true);
-\endverbatim
- */
-void wakeOrientation(bool enable);
+void MMA8452Q::wakeOn(bool enable, uint8_t events);
 
 /* void intDataRdy(bool enable, uint8_t pin); */
 /* void intFreefallMotion(bool enable, uint8_t pin); */

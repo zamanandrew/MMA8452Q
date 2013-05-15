@@ -258,16 +258,15 @@ void MMA8452Q::detectOrientation(bool enable) {
 	registerSetBit(PL_CFG, PL_EN, enable);
 }
 
-void MMA8452Q::wakeFreefallMotion(bool enable) {
-	registerSetBit(CTRL_REG3, WAKE_FF_MT, enable);
-}
+void MMA8452Q::wakeOn(bool enable, uint8_t events) {
+	if (events & FREEFALL_MOTION)
+		registerSetBit(CTRL_REG3, WAKE_FF_MT, enable);
 
-void MMA8452Q::wakePulse(bool enable) {
-	registerSetBit(CTRL_REG3, WAKE_PULSE, enable);
-}
+	if (events & PULSE)
+		registerSetBit(CTRL_REG3, WAKE_PULSE, enable);
 
-void MMA8452Q::wakeOrientation(bool enable) {
-	registerSetBit(CTRL_REG3, WAKE_LNDPRT, enable);
+	if (events & ORIENTATION)
+		registerSetBit(CTRL_REG3, WAKE_LNDPRT, enable);
 }
 
 /* void MMA8452Q::intDataRdy(bool enable, uint8_t pin) { */
