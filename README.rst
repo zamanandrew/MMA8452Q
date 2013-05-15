@@ -5,7 +5,8 @@ The **MMA8452Q** is a tiny and low-power three-axis accelerometer. This library
 implements a simple interface to access most of the accelerometer functionality
 from an Arduino.
 
-This library has support for the following features:
+FEATURES
+--------
 
 * Normal and fast raw axes values reading
 * Scale configuration (allowed 2g, 4g and 8g scales)
@@ -13,27 +14,34 @@ This library has support for the following features:
 * Low noise mode
 * Orientation detection (portrait/landscape and back/front)
 
-See the [simple.ino](examples/simple.ino) example for more information.
+See the :download:`simple.ino <../examples/simple.ino>` example.
 
-## TODO
+TODO
+----
 
 * Auto-WAKE/SLEEP mode and detection
 * Motion and freefall detection
 * Single and double tap detection
 * Interrupts configuration
 
-## DEPENDENCIES
+DEPENDENCIES
+------------
 
-The only dependency is the standard [Wire](http://arduino.cc/en/Reference/Wire)
-Arduino library.
+The only dependency is the standard Wire_ Arduino library.
 
-## INSTALLATION
+.. _Wire: http://arduino.cc/en/Reference/Wire
 
-Just clone the repository into your user libraries directory. For example, on
-OSX, the default directory is `~/Documents/Arduino/libraries/` and on Windows
-it's `My Documents\Arduino\libraries\`.
+INSTALLATION
+------------
 
-## COPYRIGHT
+Just clone the repository into your user libraries directory.
+
+For more info, have a look at the Arduino guide_ page.
+
+.. _guide: http://arduino.cc/en/Guide/Libraries
+
+COPYRIGHT
+---------
 
 Copyright (C) 2013 Alessandro Ghedini <alessandro@ghedini.me>
 
