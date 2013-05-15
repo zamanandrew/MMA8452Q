@@ -270,30 +270,30 @@ void MMA8452Q::wakeOrientation(bool enable) {
 	registerSetBit(CTRL_REG3, WAKE_LNDPRT, enable);
 }
 
-void MMA8452Q::intDataRdy(bool enable, uint8_t pin) {
-	registerSetBit(CTRL_REG4, INT_EN_DRDY, enable);
-	registerSetBit(CTRL_REG5, INT_CFG_DRDY, enable);
-}
+/* void MMA8452Q::intDataRdy(bool enable, uint8_t pin) { */
+/* 	registerSetBit(CTRL_REG4, INT_EN_DRDY, enable); */
+/* 	registerSetBit(CTRL_REG5, INT_CFG_DRDY, enable); */
+/* } */
 
-void MMA8452Q::intFreefallMotion(bool enable, uint8_t pin) {
-	registerSetBit(CTRL_REG4, INT_EN_FF_MT, enable);
-	registerSetBit(CTRL_REG5, INT_CFG_FF_MT, enable);
-}
+/* void MMA8452Q::intFreefallMotion(bool enable, uint8_t pin) { */
+/* 	registerSetBit(CTRL_REG4, INT_EN_FF_MT, enable); */
+/* 	registerSetBit(CTRL_REG5, INT_CFG_FF_MT, enable); */
+/* } */
 
-void MMA8452Q::intPulse(bool enable, uint8_t pin) {
-	registerSetBit(CTRL_REG4, INT_EN_PULSE, enable);
-	registerSetBit(CTRL_REG5, INT_CFG_PULSE, enable);
-}
+/* void MMA8452Q::intPulse(bool enable, uint8_t pin) { */
+/* 	registerSetBit(CTRL_REG4, INT_EN_PULSE, enable); */
+/* 	registerSetBit(CTRL_REG5, INT_CFG_PULSE, enable); */
+/* } */
 
-void MMA8452Q::intOrientation(bool enable, uint8_t pin) {
-	registerSetBit(CTRL_REG4, INT_EN_LNDPRT, enable);
-	registerSetBit(CTRL_REG5, INT_CFG_LNDPRT, enable);
-}
+/* void MMA8452Q::intOrientation(bool enable, uint8_t pin) { */
+/* 	registerSetBit(CTRL_REG4, INT_EN_LNDPRT, enable); */
+/* 	registerSetBit(CTRL_REG5, INT_CFG_LNDPRT, enable); */
+/* } */
 
-void MMA8452Q::intAutoSlp(bool enable, uint8_t pin) {
-	registerSetBit(CTRL_REG4, INT_EN_ASLP, enable);
-	registerSetBit(CTRL_REG5, INT_CFG_ASLP, enable);
-}
+/* void MMA8452Q::intAutoSlp(bool enable, uint8_t pin) { */
+/* 	registerSetBit(CTRL_REG4, INT_EN_ASLP, enable); */
+/* 	registerSetBit(CTRL_REG5, INT_CFG_ASLP, enable); */
+/* } */
 
 void MMA8452Q::axes(int axes[]) {
 	uint8_t *data;

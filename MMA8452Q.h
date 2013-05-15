@@ -31,10 +31,12 @@
 #ifndef MMA8452Q_H
 #define MMA8452Q_H
 
-enum MMA8452Q_INTERRUPTS {
-	MMA8452Q_INT1 = 1,
-	MMA8452Q_INT2 = 0
-};
+class MMA8452Q {
+public:
+/* enum MMA8452Q_INTERRUPTS { */
+/* 	MMA8452Q_INT1 = 1, */
+/* 	MMA8452Q_INT2 = 0 */
+/* }; */
 
 enum MMA8452Q_SYSMOD {
 	STANDBY = 0b00,
@@ -42,45 +44,367 @@ enum MMA8452Q_SYSMOD {
 	SLEEP   = 0b10
 };
 
-class MMA8452Q {
-	public:
-		MMA8452Q();
+MMA8452Q();
 
-		int begin(void);
+/*! Initialize the MMA8452Q. */
+int begin(void);
 
-		uint8_t status(void);
-		uint8_t sysmod(void);
-		uint8_t intSource(void);
+/*! Read the status of the MMA8452Q. */
+uint8_t status(void);
 
-		void scale(uint8_t scale);
-		void offset(int8_t off_x, int8_t off_y, int8_t off_z);
+/*! Read the system mode of the MMA8452Q.
 
-		void axes(int axes[]);
-		bool orientation(uint8_t *value);
+Example:
+\verbatim embed:rst
+.. code-block:: c++
 
-		int landscape(uint8_t orientation);
-		int portrait(uint8_t orientation);
-		int backFront(uint8_t orientation);
+  switch (accel.sysmod()) {
+    case MMA8452Q::STANDBY:
+      Serial.println("StandBy");
+      break;
 
-		void active(bool enable);
-		void fastRead(bool enable);
-		void lowNoise(bool enable);
+    case MMA8452Q::SLEEP:
+      Serial.println("Sleep");
+      break;
 
-		void reset(void);
-		void selfTest(bool enable);
-		void autoSleep(bool enable);
+    case MMA8452Q::WAKE:
+      Serial.println("Wake");
+      break;
+  }
+\endverbatim
+ */
+uint8_t sysmod(void);
 
-		void detectOrientation(bool enable);
+/*! Read the source pin of the last interrupt. */
+uint8_t intSource(void);
 
-		void wakeFreefallMotion(bool enable);
-		void wakePulse(bool enable);
-		void wakeOrientation(bool enable);
 
-		void intDataRdy(bool enable, uint8_t pin);
-		void intFreefallMotion(bool enable, uint8_t pin);
-		void intPulse(bool enable, uint8_t pin);
-		void intOrientation(bool enable, uint8_t pin);
-		void intAutoSlp(bool enable, uint8_t pin);
+/*! Set the scale of the MMA8452Q.
+
+Before calling this method, the MMA8452Q must be disabled using the active()
+method.
+
+\param scale - scale can be 2, 4, or 8.
+
+Example:
+\verbatim embed:rst
+.. code-block:: c++
+
+  accel.active(false);
+  accel.scale(2);
+  accel.active(true);
+\endverbatim
+ */
+void scale(uint8_t scale);
+
+/*! Calibrate the MMA8452Q.
+
+Before calling this method, the MMA8452Q must be disabled using the active()
+method.
+
+\param off_x - X axis calibration.
+\param off_y - Y axis calibration.
+\param off_z - Z axis calibration.
+
+Example:
+\verbatim embed:rst
+.. code-block:: c++
+
+  accel.active(false);
+  accel.offset(5, -6, 10);
+  accel.active(true);
+\endverbatim
+ */
+
+void offset(int8_t off_x, int8_t off_y, int8_t off_z);
+
+/*! Read the raw values of the axes.
+
+\param axes - output array of size 3 (must be allocated by the user).
+
+Example:
+\verbatim embed:rst
+.. code-block:: c++
+
+  int axes[3];
+  int x, y, z;
+
+  accel.axes(axes);
+
+  x = axes[0];
+  y = axes[1];
+  x = axes[2];
+\endverbatim
+ */
+
+
+void axes(int *axes);
+
+/*! Read the orientation value.
+
+Before calling this method, the orientation detection must be activated using
+the detectOrientation() method.
+
+\param value - output value.
+\return Whether the orientation has changed since the last read.
+
+Example:
+\verbatim embed:rst
+.. code-block:: c++
+
+  uint8_t orientation;
+
+  if (accel.orientation(&orientation)) {
+    ...
+  }
+\endverbatim
+ */
+bool orientation(uint8_t *value);
+
+/*! Read the landscape orientation status.
+
+\param orientation - The orientation set by the orientation() method.
+\return Whether the landscape orientation is right or left.
+
+Example:
+\verbatim embed:rst
+.. code-block:: c++
+
+  uint8_t orientation;
+
+  accel.orientation(&orientation));
+
+  switch (accel.landscape(orientation)) {
+    case HIGH:
+      Serial.println("Landscape Right");
+      break;
+
+    case LOW:
+      Serial.println("Landscape Left");
+      break;
+
+    default:
+      Serial.println("Error");
+      break;
+  }
+\endverbatim
+ */
+int landscape(uint8_t orientation);
+
+/*! Read the portrait orientation status.
+
+\param orientation - The orientation set by the orientation() method.
+\return Whether the portrait orientation is up or down.
+
+Example:
+\verbatim embed:rst
+.. code-block:: c++
+
+  uint8_t orientation;
+
+  accel.orientation(&orientation));
+
+  switch (accel.portrait(orientation)) {
+    case HIGH:
+      Serial.println("Portrait Up");
+      break;
+
+    case LOW:
+      Serial.println("Portrait Down");
+      break;
+
+    default:
+      Serial.println("Error");
+      break;
+  }
+\endverbatim
+ */
+int portrait(uint8_t orientation);
+
+/*! Read the back/front orientation status.
+
+\param orientation - The orientation set by the orientation() method.
+\return Whether the orientation is back or front.
+
+Example:
+\verbatim embed:rst
+.. code-block:: c++
+
+  uint8_t orientation;
+
+  accel.orientation(&orientation));
+
+  if (accel.backFront(orientation))
+    Serial.println("Back");
+  else
+    Serial.println("Front");
+\endverbatim
+ */
+int backFront(uint8_t orientation);
+
+
+/*! Enable/disable the MMA8452Q.
+
+\param enable - Whether to enable or disable the MMA8452Q.
+ */
+void active(bool enable);
+
+/*! Enable/disable the fast read mode.
+
+Before calling this method, the MMA8452Q must be disabled using the active()
+method.
+
+\param enable - Whether to enable or disable the fast read mode.
+
+Example:
+\verbatim embed:rst
+.. code-block:: c++
+
+  accel.active(false);
+  accel.fastRead(true);
+  accel.active(true);
+\endverbatim
+ */
+void fastRead(bool enable);
+
+/*! Enable/disable the low noise mode.
+
+Before calling this method, the MMA8452Q must be disabled using the active()
+method.
+
+\param enable - Whether to enable or disable the low noise mode.
+
+Example:
+\verbatim embed:rst
+.. code-block:: c++
+
+  accel.active(false);
+  accel.lowNoise(true);
+  accel.active(true);
+\endverbatim
+ */
+void lowNoise(bool enable);
+
+
+/*! Reset the MMA8452Q. */
+void reset(void);
+
+/*! Enable/disable the self-test mode.
+
+Before calling this method, the MMA8452Q must be disabled using the active()
+method.
+
+\param enable - Whether to enable or disable the self-test mode.
+
+Example:
+\verbatim embed:rst
+.. code-block:: c++
+
+  accel.active(false);
+  accel.selfTest(true);
+  accel.active(true);
+\endverbatim
+ */
+void selfTest(bool enable);
+
+/*! Enable/disable the auto-sleep mode.
+
+Before calling this method, the MMA8452Q must be disabled using the active()
+method.
+
+\param enable - Whether to enable or disable the auto-sleep mode.
+
+Example:
+\verbatim embed:rst
+.. code-block:: c++
+
+  accel.active(false);
+  accel.autoSleep(true);
+  accel.active(true);
+\endverbatim
+ */
+void autoSleep(bool enable);
+
+/*! Enable/disable the orientation detection.
+
+Before calling this method, the MMA8452Q must be disabled using the active()
+method.
+
+\param enable - Whether to enable or disable the orientation detection.
+
+Example:
+\verbatim embed:rst
+.. code-block:: c++
+
+  accel.active(false);
+  accel.detectOrientation(true);
+  accel.active(true);
+\endverbatim
+ */
+void detectOrientation(bool enable);
+
+
+/*! Enable/disable auto-wake on freefall/motion detection.
+
+Before calling this method, the MMA8452Q must be disabled using the active()
+method.
+
+\param enable - Whether to enable or disable the auto-wake on freefall/motion
+detection.
+
+Example:
+\verbatim embed:rst
+.. code-block:: c++
+
+  accel.active(false);
+  accel.wakeFreefallMotion(true);
+  accel.active(true);
+\endverbatim
+ */
+void wakeFreefallMotion(bool enable);
+
+/*! Enable/disable auto-wake on pulse detection.
+
+Before calling this method, the MMA8452Q must be disabled using the active()
+method.
+
+\param enable - Whether to enable or disable the auto-wake on pulse detection.
+
+Example:
+\verbatim embed:rst
+.. code-block:: c++
+
+  accel.active(false);
+  accel.wakePulse(true);
+  accel.active(true);
+\endverbatim
+ */
+void wakePulse(bool enable);
+
+/*! Enable/disable auto-wake on orientation change detection.
+
+Before calling this method, the MMA8452Q must be disabled using the active()
+method.
+
+\param enable - Whether to enable or disable the auto-wake on orientation change
+detection.
+
+Example:
+\verbatim embed:rst
+.. code-block:: c++
+
+  accel.active(false);
+  accel.wakeOrientation(true);
+  accel.active(true);
+\endverbatim
+ */
+void wakeOrientation(bool enable);
+
+/* void intDataRdy(bool enable, uint8_t pin); */
+/* void intFreefallMotion(bool enable, uint8_t pin); */
+/* void intPulse(bool enable, uint8_t pin); */
+/* void intOrientation(bool enable, uint8_t pin); */
+/* void intAutoSlp(bool enable, uint8_t pin); */
 };
 
 #endif

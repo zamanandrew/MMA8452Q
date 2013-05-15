@@ -39,9 +39,17 @@ void setup() {
 void loop() {
 	/* check board current mode */
 	switch (accel.sysmod()) {
-		case STANDBY: Serial.println("StandBy"); break;
-		case SLEEP:   Serial.println("Sleep"); break;
-		case WAKE:    Serial.println("Wake"); break;
+		case MMA8452Q::STANDBY:
+			Serial.println("StandBy");
+			break;
+
+		case MMA8452Q::SLEEP:
+			Serial.println("Sleep");
+			break;
+
+		case MMA8452Q::WAKE:
+			Serial.println("Wake");
+			break;
 	}
 
 	/* get and print raw axes values */
@@ -58,14 +66,32 @@ void loop() {
 	if (accel.orientation(&orientation)) {
 		/* get and print portrait orientation status */
 		switch (accel.portrait(orientation)) {
-			case HIGH: Serial.println("Portrait Up"); break;
-			case LOW: Serial.println("Portrait Down"); break;
+			case HIGH:
+				Serial.println("Portrait Up");
+				break;
+
+			case LOW:
+				Serial.println("Portrait Down");
+				break;
+
+			default:
+				Serial.println("Error");
+				break;
 		}
 
 		/* get and print landscape orientation status */
 		switch (accel.landscape(orientation)) {
-			case HIGH: Serial.println("Landscape Right"); break;
-			case LOW: Serial.println("Landscape Left"); break;
+			case HIGH:
+				Serial.println("Landscape Right");
+				break;
+
+			case LOW:
+				Serial.println("Landscape Left");
+				break;
+
+			default:
+				Serial.println("Error");
+				break;
 		}
 
 		/* get and print back/front orientation status */
