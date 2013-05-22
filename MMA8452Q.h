@@ -31,6 +31,8 @@
 #ifndef MMA8452Q_H
 #define MMA8452Q_H
 
+#include <stdint.h>
+
 class MMA8452Q {
 public:
 /* enum MMA8452Q_INTERRUPTS { */

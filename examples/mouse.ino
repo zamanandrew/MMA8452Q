@@ -5,6 +5,7 @@
  */
 
 #include <MMA8452Q.h>
+#include <Wire.h> /* so the Arduino IDE auto-detects the dependency */
 
 MMA8452Q accel;
 
