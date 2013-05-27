@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,11 +9,14 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>API Reference &mdash; MMA8452Q 0.1 documentation</title>
+    <title>API Reference &mdash; MMA8452Q v0.1</title>
     
-    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/breathe.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    <link rel="stylesheet" href="_static/theme_extras.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -25,27 +30,25 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="MMA8452Q 0.1 documentation" href="index.html" />
-<link rel="stylesheet" type="text/css" href="_static/style.css">
-
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="MMA8452Q v0.1" href="index.html" /> 
   </head>
   <body>
-<div class="sphinxsidebar">
-	<div class="sphinxsidebarwrapper">
-		<a href="/"><img src="_static/logo.png"/></a>
-		<ul>
-<li><a class="reference internal" href="#">API Reference</a></li>
-</ul>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>API Reference</span></a></h1>
+        <h2 class="heading"><span>Arduino library for the MMA8452Q three-axis accelerometer</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
 
-	</div>
-</div>
-
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
+      </div>
+      <div class="content">
+        
+        
   <div class="section" id="api-reference">
 <h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
 <div class="line-block">
@@ -134,7 +137,7 @@ Example: <div class="highlight-c++"><div class="highlight"><pre><span class="k">
 </div>
  <dl class="docutils">
 <dt><strong>Return</strong></dt>
-<dd>- One of the MMA8452Q_SYSMOD values.</dd>
+<dd>One of the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1af4dca8c6babe3b568a009c50f1e9ef29"><em>MMA8452Q::MMA8452Q_SYSMOD</em></a> values.</dd>
 </dl>
 </p>
 </p>
@@ -164,7 +167,7 @@ Example: <div class="highlight-c++"><div class="highlight"><pre><span class="n">
  <dl class="docutils">
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last">
-<li><tt class="first docutils literal"><span class="pre">scale</span></tt> - <p>- scale can be 2, 4, or 8.</p>
+<li><tt class="first docutils literal"><span class="pre">scale</span></tt> - <p>scale can be 2, 4, or 8.</p>
 </li>
 </ul>
 </dd>
@@ -189,11 +192,11 @@ Example: <div class="highlight-c++"><div class="highlight"><pre><span class="n">
  <dl class="docutils">
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last">
-<li><tt class="first docutils literal"><span class="pre">off_x</span></tt> - <p>- X axis calibration. </p>
+<li><tt class="first docutils literal"><span class="pre">off_x</span></tt> - <p>X axis calibration. </p>
 </li>
-<li><tt class="first docutils literal"><span class="pre">off_y</span></tt> - <p>- Y axis calibration. </p>
+<li><tt class="first docutils literal"><span class="pre">off_y</span></tt> - <p>Y axis calibration. </p>
 </li>
-<li><tt class="first docutils literal"><span class="pre">off_z</span></tt> - <p>- Z axis calibration.</p>
+<li><tt class="first docutils literal"><span class="pre">off_z</span></tt> - <p>Z axis calibration.</p>
 </li>
 </ul>
 </dd>
@@ -222,7 +225,7 @@ Example: <div class="highlight-c++"><div class="highlight"><pre><span class="kt"
  <dl class="docutils">
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last">
-<li><tt class="first docutils literal"><span class="pre">axes</span></tt> - <p>- output array of size 3 (must be allocated by the user).</p>
+<li><tt class="first docutils literal"><span class="pre">axes</span></tt> - <p>output array of size 3 (must be allocated by the user).</p>
 </li>
 </ul>
 </dd>
@@ -251,7 +254,7 @@ Example: <div class="highlight-c++"><div class="highlight"><pre><span class="kt"
 <dd>Whether the orientation has changed since the last read.</dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last">
-<li><tt class="first docutils literal"><span class="pre">value</span></tt> - <p>- output value. </p>
+<li><tt class="first docutils literal"><span class="pre">value</span></tt> - <p>output value. </p>
 </li>
 </ul>
 </dd>
@@ -291,7 +294,7 @@ Example: <div class="highlight-c++"><div class="highlight"><pre><span class="kt"
 <dd>Whether the landscape orientation is right or left.</dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last">
-<li><tt class="first docutils literal"><span class="pre">orientation</span></tt> - <p>- The orientation set by the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1a9479cea468bcede2fccf194520e74133"><em>orientation()</em></a> method. </p>
+<li><tt class="first docutils literal"><span class="pre">orientation</span></tt> - <p>The orientation set by the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1a9479cea468bcede2fccf194520e74133"><em>orientation()</em></a> method. </p>
 </li>
 </ul>
 </dd>
@@ -331,7 +334,7 @@ Example: <div class="highlight-c++"><div class="highlight"><pre><span class="kt"
 <dd>Whether the portrait orientation is up or down.</dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last">
-<li><tt class="first docutils literal"><span class="pre">orientation</span></tt> - <p>- The orientation set by the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1a9479cea468bcede2fccf194520e74133"><em>orientation()</em></a> method. </p>
+<li><tt class="first docutils literal"><span class="pre">orientation</span></tt> - <p>The orientation set by the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1a9479cea468bcede2fccf194520e74133"><em>orientation()</em></a> method. </p>
 </li>
 </ul>
 </dd>
@@ -362,7 +365,7 @@ Example: <div class="highlight-c++"><div class="highlight"><pre><span class="kt"
 <dd>Whether the orientation is back or front.</dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last">
-<li><tt class="first docutils literal"><span class="pre">orientation</span></tt> - <p>- The orientation set by the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1a9479cea468bcede2fccf194520e74133"><em>orientation()</em></a> method. </p>
+<li><tt class="first docutils literal"><span class="pre">orientation</span></tt> - <p>The orientation set by the <a class="reference internal" href="#MMA8452QclassMMA8452Q_1a9479cea468bcede2fccf194520e74133"><em>orientation()</em></a> method. </p>
 </li>
 </ul>
 </dd>
@@ -380,7 +383,7 @@ Example: <div class="highlight-c++"><div class="highlight"><pre><span class="kt"
 <p><dl class="docutils">
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last">
-<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>- Whether to enable or disable the <a class="reference internal" href="#MMA8452QclassMMA8452Q"><em>MMA8452Q</em></a>. </p>
+<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>Whether to enable or disable the <a class="reference internal" href="#MMA8452QclassMMA8452Q"><em>MMA8452Q</em></a>. </p>
 </li>
 </ul>
 </dd>
@@ -405,7 +408,7 @@ Example: <div class="highlight-c++"><div class="highlight"><pre><span class="n">
  <dl class="docutils">
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last">
-<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>- Whether to enable or disable the fast read mode.</p>
+<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>Whether to enable or disable the fast read mode.</p>
 </li>
 </ul>
 </dd>
@@ -430,7 +433,7 @@ Example: <div class="highlight-c++"><div class="highlight"><pre><span class="n">
  <dl class="docutils">
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last">
-<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>- Whether to enable or disable the low noise mode.</p>
+<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>Whether to enable or disable the low noise mode.</p>
 </li>
 </ul>
 </dd>
@@ -463,7 +466,7 @@ Example: <div class="highlight-c++"><div class="highlight"><pre><span class="n">
  <dl class="docutils">
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last">
-<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>- Whether to enable or disable the self-test mode.</p>
+<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>Whether to enable or disable the self-test mode.</p>
 </li>
 </ul>
 </dd>
@@ -488,7 +491,7 @@ Example: <div class="highlight-c++"><div class="highlight"><pre><span class="n">
  <dl class="docutils">
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last">
-<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>- Whether to enable or disable the auto-sleep mode.</p>
+<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>Whether to enable or disable the auto-sleep mode.</p>
 </li>
 </ul>
 </dd>
@@ -513,7 +516,7 @@ Example: <div class="highlight-c++"><div class="highlight"><pre><span class="n">
  <dl class="docutils">
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last">
-<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>- Whether to enable or disable the orientation detection.</p>
+<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>Whether to enable or disable the orientation detection.</p>
 </li>
 </ul>
 </dd>
@@ -538,9 +541,9 @@ Example: <div class="highlight-c++"><div class="highlight"><pre><span class="n">
  <dl class="docutils">
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last">
-<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>- Whether to enable or disable the auto-wake on the selected events. </p>
+<li><tt class="first docutils literal"><span class="pre">enable</span></tt> - <p>Whether to enable or disable the auto-wake on the selected events. </p>
 </li>
-<li><tt class="first docutils literal"><span class="pre">events</span></tt> - <p>- Bit mask listing the desired events. The possible events are listed by the MMA8452Q_EVENTS enum.</p>
+<li><tt class="first docutils literal"><span class="pre">events</span></tt> - <p>Bit mask listing the desired events. See <a class="reference internal" href="#MMA8452QclassMMA8452Q_1a00f60f98c7e02152f16f3cc1a393c303"><em>MMA8452Q::MMA8452Q_EVENTS</em></a>.</p>
 </li>
 </ul>
 </dd>
@@ -553,16 +556,18 @@ Example: <div class="highlight-c++"><div class="highlight"><pre><span class="n">
 </div>
 
 
-          </div>
-        </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-	
+      <div class="bottomnav">
+      
+        <p>
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+
     <div class="footer">
         &copy; Copyright 2013, Alessandro Ghedini.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
-
   </body>
 </html>
