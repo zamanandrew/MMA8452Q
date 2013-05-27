@@ -62,7 +62,7 @@ uint8_t status(void);
 
 /*! Read the system mode of the MMA8452Q.
 
-\return - One of the MMA8452Q_SYSMOD values.
+\return One of the MMA8452Q::MMA8452Q_SYSMOD values.
 
 Example:
 \verbatim embed:rst
@@ -94,7 +94,7 @@ uint8_t intSource(void);
 Before calling this method, the MMA8452Q must be disabled using the active()
 method.
 
-\param scale - scale can be 2, 4, or 8.
+\param scale scale can be 2, 4, or 8.
 
 Example:
 \verbatim embed:rst
@@ -112,9 +112,9 @@ void scale(uint8_t scale);
 Before calling this method, the MMA8452Q must be disabled using the active()
 method.
 
-\param off_x - X axis calibration.
-\param off_y - Y axis calibration.
-\param off_z - Z axis calibration.
+\param off_x X axis calibration.
+\param off_y Y axis calibration.
+\param off_z Z axis calibration.
 
 Example:
 \verbatim embed:rst
@@ -130,7 +130,7 @@ void offset(int8_t off_x, int8_t off_y, int8_t off_z);
 
 /*! Read the raw values of the axes.
 
-\param axes - output array of size 3 (must be allocated by the user).
+\param axes output array of size 3 (must be allocated by the user).
 
 Example:
 \verbatim embed:rst
@@ -155,7 +155,7 @@ void axes(int *axes);
 Before calling this method, the orientation detection must be activated using
 the detectOrientation() method.
 
-\param value - output value.
+\param value output value.
 \return Whether the orientation has changed since the last read.
 
 Example:
@@ -173,7 +173,7 @@ bool orientation(uint8_t *value);
 
 /*! Read the landscape orientation status.
 
-\param orientation - The orientation set by the orientation() method.
+\param orientation The orientation set by the orientation() method.
 \return Whether the landscape orientation is right or left.
 
 Example:
@@ -203,7 +203,7 @@ int landscape(uint8_t orientation);
 
 /*! Read the portrait orientation status.
 
-\param orientation - The orientation set by the orientation() method.
+\param orientation The orientation set by the orientation() method.
 \return Whether the portrait orientation is up or down.
 
 Example:
@@ -233,7 +233,7 @@ int portrait(uint8_t orientation);
 
 /*! Read the back/front orientation status.
 
-\param orientation - The orientation set by the orientation() method.
+\param orientation The orientation set by the orientation() method.
 \return Whether the orientation is back or front.
 
 Example:
@@ -255,7 +255,7 @@ int backFront(uint8_t orientation);
 
 /*! Enable/disable the MMA8452Q.
 
-\param enable - Whether to enable or disable the MMA8452Q.
+\param enable Whether to enable or disable the MMA8452Q.
  */
 void active(bool enable);
 
@@ -264,7 +264,7 @@ void active(bool enable);
 Before calling this method, the MMA8452Q must be disabled using the active()
 method.
 
-\param enable - Whether to enable or disable the fast read mode.
+\param enable Whether to enable or disable the fast read mode.
 
 Example:
 \verbatim embed:rst
@@ -282,7 +282,7 @@ void fastRead(bool enable);
 Before calling this method, the MMA8452Q must be disabled using the active()
 method.
 
-\param enable - Whether to enable or disable the low noise mode.
+\param enable Whether to enable or disable the low noise mode.
 
 Example:
 \verbatim embed:rst
@@ -304,7 +304,7 @@ void reset(void);
 Before calling this method, the MMA8452Q must be disabled using the active()
 method.
 
-\param enable - Whether to enable or disable the self-test mode.
+\param enable Whether to enable or disable the self-test mode.
 
 Example:
 \verbatim embed:rst
@@ -322,7 +322,7 @@ void selfTest(bool enable);
 Before calling this method, the MMA8452Q must be disabled using the active()
 method.
 
-\param enable - Whether to enable or disable the auto-sleep mode.
+\param enable Whether to enable or disable the auto-sleep mode.
 
 Example:
 \verbatim embed:rst
@@ -340,7 +340,7 @@ void autoSleep(bool enable);
 Before calling this method, the MMA8452Q must be disabled using the active()
 method.
 
-\param enable - Whether to enable or disable the orientation detection.
+\param enable Whether to enable or disable the orientation detection.
 
 Example:
 \verbatim embed:rst
@@ -358,10 +358,9 @@ void detectOrientation(bool enable);
 Before calling this method, the MMA8452Q must be disabled using the active()
 method.
 
-\param enable - Whether to enable or disable the auto-wake on the selected
+\param enable Whether to enable or disable the auto-wake on the selected
 events.
-\param events - Bit mask listing the desired events. The possible events are
-listed by the MMA8452Q_EVENTS enum.
+\param events Bit mask listing the desired events. See MMA8452Q::MMA8452Q_EVENTS.
 
 Example:
 \verbatim embed:rst
