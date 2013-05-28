@@ -64,6 +64,38 @@ from an Arduino.</p>
 <li>Orientation detection (portrait/landscape and back/front)</li>
 <li>Auto-WAKE/SLEEP mode and detection</li>
 </ul>
+</div>
+<div class="section" id="getting-started">
+<h2>GETTING STARTED<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-c++"><div class="highlight"><pre><span class="cp">#include &lt;MMA8452Q.h&gt;</span>
+<span class="cp">#include &lt;Wire.h&gt; </span><span class="cm">/* so the Arduino IDE auto-detects the dependency */</span><span class="cp"></span>
+
+<span class="n">MMA8452Q</span> <span class="n">accel</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">accel</span><span class="p">.</span><span class="n">begin</span><span class="p">())</span>
+    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="cm">/* error */</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="cm">/* get and print raw axes values */</span>
+  <span class="n">accel</span><span class="p">.</span><span class="n">axes</span><span class="p">(</span><span class="n">axes</span><span class="p">);</span>
+
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;x: &quot;</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;, y: &quot;</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;, z: &quot;</span><span class="p">);</span>
+  <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+
+  <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <p>See the API <a class="reference external" href="http://ghedo.github.io/MMA8452Q/apiref.html">reference</a> for more information.</p>
 </div>
 <div class="section" id="todo">
